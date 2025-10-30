@@ -140,3 +140,97 @@ export const contacts = [
      "fax":"+91 9876543211"
   }
 ]
+
+export const orders = [
+  {
+    "order_id": "ORD-1001",
+    "customer_id": "CUST-501",
+    "customer_name": "haran",
+    "discount_price": 50,
+    "total_price": 500,
+    "product_id": "PROD-301",
+    "quantity": 2,
+    "product_type": "Electronics",
+    "final_amount": 450,
+    "delivery_info": {
+      "requested_date": "2025-10-25",
+      "delivery_date": "2025-10-30"
+    },
+    "shipping_method": "Express",
+    "payment_terms": "Net 15",
+    "freight_terms": "Prepaid"
+  },
+  {
+    "order_id": "ORD-1002",
+    "customer_id": "CUST-502",
+    "customer_name": "mame",
+    "discount_price": 0,
+    "total_price": 1200,
+    "product_id": "PROD-205",
+    "quantity": 5,
+    "product_type": "Clothing",
+    "final_amount": 1200,
+    "delivery_info": {
+      "requested_date": "2025-10-26",
+      "delivery_date": "2025-11-01"
+    },
+    "shipping_method": "Standard",
+    "payment_terms": "Net 30",
+    "freight_terms": "Collect"
+  },
+  {
+    "order_id": "ORD-1003",
+    "customer_id": "CUST-503",
+    "customer_name": "saran",
+    "discount_price": 100,
+    "total_price": 1500,
+    "product_id": "PROD-110",
+    "quantity": 3,
+    "product_type": "Furniture",
+    "final_amount": 1400,
+    "delivery_info": {
+      "requested_date": "2025-10-27",
+      "delivery_date": "2025-11-05"
+    },
+    "shipping_method": "Freight",
+    "payment_terms": "Advance Payment",
+    "freight_terms": "Prepaid"
+  },
+  {
+    "order_id": "ORD-1004",
+    "customer_id": "CUST-504",
+    "customer_name": "kiran",
+    "discount_price": 75,
+    "total_price": 900,
+    "product_id": "PROD-505",
+    "quantity": 1,
+    "product_type": "Appliance",
+    "final_amount": 825,
+    "delivery_info": {
+      "requested_date": "2025-10-29",
+      "delivery_date": "2025-11-03"
+    },
+    "shipping_method": "Courier",
+    "payment_terms": "COD",
+    "freight_terms": "Collect"
+  },
+  {
+    "order_id": "ORD-1005",
+    "customer_id": "CUST-505",
+    "customer_name": "raman",
+    "discount_price": 200,
+    "total_price": 2200,
+    "product_id": "PROD-801",
+    "quantity": 4,
+    "product_type": "Computer Accessories",
+    "final_amount": 2000,
+    "delivery_info": {
+      "requested_date": "2025-10-28",
+      "delivery_date": "2025-11-06"
+    },
+    "shipping_method": "Air Freight",
+    "payment_terms": "Net 10",
+    "freight_terms": "Prepaid"
+  }
+]
+

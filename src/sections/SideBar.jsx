@@ -11,7 +11,7 @@ const SideBar = () => {
         <div className='flex flex-col gap-3 px-2 text-[20px] text-white py-6  h-full'>
 
          {sidebarLinks.map(({name,icon,path})=>(
-            <NavLink to={path}  className={({ isActive }) =>
+            <NavLink to={path} key={name} className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-5 rounded-lg shadow-sm  border-l-2 border-white w-full 
              ${
                isActive ? "bg-gray-700 font-medium" : ""

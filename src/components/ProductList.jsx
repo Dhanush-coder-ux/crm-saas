@@ -4,7 +4,7 @@ const ProductList = () => {
 
   return (
     <div className="w-[88%] ml-[12%] p-6  min-h-screen">
-      <h1 className="text-2xl font-semibold mb-6 text-blue-900">Product List</h1>
+      <h1 className="text-3xl font-bold text-blue-900 mb-8">Product Controls</h1>
 
       <ProductAdd/>
       

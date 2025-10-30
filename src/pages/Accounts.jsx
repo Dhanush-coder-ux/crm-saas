@@ -4,7 +4,7 @@ import{ Link }from "react-router-dom"
 const Accounts = () => {
   return (
     <div className='w-[90%] ml-[12%] p-6  min-h-screen'>
-      <h1 className='text-2xl font-semibold mb-6 text-blue-900'>Accounts Page</h1>
+      <h1 className="text-3xl font-bold text-blue-900 mb-8">Accounts Controls</h1>
       <AccountInfo/>
       <div className='overflow-x-auto  bg-white shadow-md rounded-lg'>
         <table className='min-w-full text-left border border-gray-200'>
@@ -18,8 +18,8 @@ const Accounts = () => {
               <th className="px-6 py-3 border-b">Gst number</th>
               <th className="px-6 py-3 border-b">Addres</th>
               <th className="px-6 py-3 border-b">Industry</th>
-              <th className="px-6 py-3 border-b">Sector</th>
-              <th className="px-6 py-3 border-b">Contact Person</th>
+              <th className="px-6 py-3 border-b">Sector</th> 
+               <th className="px-6 py-3 border-b">Contact Person</th>
             </tr>
         </thead>
 

@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     
     <div className='w-[90%] ml-[12%] p-6  min-h-screen'>
-       <h1 className='text-2xl font-semibold mb-6 text-blue-900'>Contacts Page</h1>
+       <h1 className="text-3xl font-bold text-blue-900 mb-8">Contacts Controls</h1>
        <ContactInfo/>
        <div className='overflow-x-auto  bg-white shadow-md rounded-lg'>
          <table className='min-w-full text-left border border-gray-200'>
