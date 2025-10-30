@@ -12,7 +12,7 @@ const SideBar = () => {
 
          {sidebarLinks.map(({name,icon,path})=>(
             <NavLink to={path}  className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-5 rounded-lg shadow-sm  border-l border-white w-full 
+            `flex items-center gap-3 px-3 py-5 rounded-lg shadow-sm  border-l-2 border-white w-full 
              ${
                isActive ? "bg-gray-700 font-medium" : ""
              }`

@@ -17,6 +17,7 @@ const ProductList = () => {
               <th className="px-6 py-3 border-b">Quantity</th>
               <th className="px-6 py-3 border-b">Product Type</th>
               <th className="px-6 py-3 border-b">Description</th>
+              <th className="px-6 py-3 border-b"></th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,15 @@ const ProductList = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{product.quantity}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{product.product_type}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{product.description}</td>
+                <div className="space-x-2 py-4">
+                <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                  <img src="/icons/edit.svg" width={15} height={15} alt="" />
+                </button>
+                <button className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                  <img src="/icons/delete.svg" width={15} height={15} alt="" />
+                </button>
+                </div>
+             
               </tr>
             ))}
           </tbody>
