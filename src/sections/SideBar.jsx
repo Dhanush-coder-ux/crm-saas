@@ -6,7 +6,9 @@ const SideBar = () => {
   return (
     <div className='w-[12%] h-screen fixed top-0 left-0 rounded-r-lg bg-gray-800 flex flex-col justify-between'>
         <div>
-            <h1 className='text-white text-3xl font-bold text-center py-6 border-b border-gray-600'>CRM</h1>
+            <h1 className='text-white text-3xl font-bold text-center py-6 border-b border-gray-600'>
+              <img src="/icons/logo.png" className="px-4" width={150} height={150} alt="" />
+            </h1>
         </div>
         <div className='flex flex-col gap-3 px-2 text-[20px] text-white py-6  h-full'>
 
