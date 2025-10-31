@@ -5,6 +5,10 @@ import Contact from './pages/Contact'
 import Product from './pages/Product'
 import Orders from './pages/Orders'
 import SideBar from './sections/SideBar'
+import AddProductForm from './components/AddProductForm'
+import AddAccountForm from './components/AddAccountFrom'
+import AddContactForm from './components/AddContactForm'
+import AddOrderForm from './components/AddOrderForm'
 
 
 const App = () => {
@@ -19,6 +23,10 @@ const App = () => {
           <Route path='/contact' element={<Contact/>} />
           <Route path='/product' element={<Product/>} />
           <Route path='/order' element={<Orders/>} />
+          <Route path='/add-product' element={<AddProductForm/>} />
+          <Route path='/add-account' element={<AddAccountForm/>} />
+          <Route path='/add-contact' element={<AddContactForm/>} />
+          <Route path='/add-order' element={<AddOrderForm/>} />
         </Routes>
       </div>
     </dir>

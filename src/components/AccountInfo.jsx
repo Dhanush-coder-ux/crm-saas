@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { account } from "../constants"
 
 
@@ -9,13 +10,15 @@ const AccountInfo = () => {
             <h2 className="text-xl font-semibold">Accounts</h2>
             <p className="text-3xl font-bold" >{account.length}</p>
         </div>
-
-       <button
+    <Link to={'/add-account'}>
+             <button
           className="bg-blue-950 text-white px-5 py-3 rounded-lg shadow-md hover:bg-blue-900 transition duration-200"
-          onClick={() => alert("Add new product clicked!")} 
+          // onClick={() => alert("Add new product clicked!")} 
         >
           + Add New Account
         </button>
+    </Link>
+
     </div>
   )
 }

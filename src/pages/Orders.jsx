@@ -10,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
+import { Link } from "react-router-dom";
 
 const Orders = () => {
   const [search, setSearch] = useState("");
@@ -57,9 +58,12 @@ const Orders = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-blue-900">Orders Controls</h1>
-        <button className="bg-blue-900 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-800 transition">
+        <Link to={'/add-order'}>
+         <button className="bg-blue-900 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-800 transition">
           + Add New Order
         </button>
+        </Link>
+       
       </div>
 
       {/* Stats */}
