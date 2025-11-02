@@ -15,7 +15,7 @@ const Contact = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  // 📌 Handle row click to show contact details
+ 
   const handleRowClick = (contact) => {
     setAlertData(contact);
     setIsAlertOpen(true);
