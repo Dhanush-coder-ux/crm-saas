@@ -55,7 +55,6 @@ const Contact = () => {
         </table>
       </div>
 
-      {/* 🔔 Alert Dialog for Contact Details */}
       <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
         <AlertDialogContent className="max-w-lg">
           <AlertDialogHeader>

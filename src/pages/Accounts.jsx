@@ -40,7 +40,7 @@ const Accounts = () => {
               <th className="px-6 py-3 border-b">Address</th>
               <th className="px-6 py-3 border-b">Industry</th>
               <th className="px-6 py-3 border-b">Sector</th>
-              <th className="px-6 py-3 border-b">Contact Person</th>
+             
             </tr>
           </thead>
 
@@ -60,9 +60,7 @@ const Accounts = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc.address}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc.industry}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc.sector}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">
-                  <Link to={"/contact"}>{acc.primary_contact}</Link>
-                </td>
+               
               </tr>
             ))}
           </tbody>
@@ -95,6 +93,16 @@ const Accounts = () => {
           </AlertDialogHeader>
 
           <AlertDialogFooter className="mt-4">
+            <AlertDialogAction >
+                <Link to={'/contact'}>
+                View Contact
+                </Link>
+            </AlertDialogAction>
+            <AlertDialogAction >
+                <Link to={'/order'}>
+                View orders
+                </Link>
+            </AlertDialogAction>
             <AlertDialogAction onClick={() => setIsAlertOpen(false)}>
               Close
             </AlertDialogAction>
