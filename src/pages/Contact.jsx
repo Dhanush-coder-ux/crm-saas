@@ -35,6 +35,7 @@ const Contact = () => {
               <th className="px-6 py-3 border-b">Mobile Number</th>
               <th className="px-6 py-3 border-b">Email</th>
               <th className="px-6 py-3 border-b">Fax</th>
+              <th className="px-6 py-3 border-b">Actions</th>
             </tr>
           </thead>
 
@@ -49,6 +50,16 @@ const Contact = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{contact.mobile_number}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{contact.email}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{contact.fax}</td>
+                 <td className="px-6 py-3 border-b border-e-blue-950">
+                  <div className="space-x-2 py-1 flex">
+                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                      <img src="/icons/edit.svg" width={15} height={15} alt="edit" />
+                    </button>
+                    <button className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                      <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

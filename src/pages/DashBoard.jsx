@@ -108,7 +108,7 @@ const DashBoard = () => {
                 <DropdownMenuContent align="end" className="w-40">
                   <DropdownMenuLabel>Assign Role</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  {["Admin", "Manager", "Seller", "Customer", "User"].map(
+                  {["Admin", "Super Admin","User"].map(
                     (role) => (
                       <DropdownMenuItem
                         key={role}

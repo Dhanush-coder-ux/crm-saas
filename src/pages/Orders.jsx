@@ -125,6 +125,7 @@ const Orders = () => {
               <th className="px-6 py-3">Delivery Date</th>
               <th className="px-6 py-3">Shipping</th>
               <th className="px-6 py-3">Payment Terms</th>
+              <th className="px-6 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -154,6 +155,16 @@ const Orders = () => {
                 </td>
                 <td className="px-6 py-3">{order.shipping_method}</td>
                 <td className="px-6 py-3">{order.payment_terms}</td>
+                 <td className="px-6 py-3 border-b border-e-blue-950">
+                  <div className="gap-0.5  flex">
+                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                      <img src="/icons/edit.svg" width={15} height={15} alt="edit" />
+                    </button>
+                    <button className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                      <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

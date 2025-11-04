@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { products } from "../constants";
+
 import ProductAdd from "./ProductAdd";
 import {
   AlertDialog,
@@ -11,15 +12,21 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
+import { ProductContext } from "../contexts/ProductContext";
 
 const ProductList = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  // const {products,getProducts} = useContext(ProductContext)
 
   const handleRowClick = (product) => {
     setAlertData(product);
     setIsAlertOpen(true);
   };
+
+  // useEffect(()=>{
+  //   getProducts();
+  // },[])
 
   return (
     <div className="w-[88%] ml-[12%] p-6 min-h-screen">
