@@ -18,7 +18,7 @@ const OrderStatus = () => {
   return (
     <div>
          <h1 className='text-3xl font-bold py-4 text-blue-900'>Orders info</h1>
-          <div className='w-[60%] py-6  grid md:grid-cols-2 gap-4'>
+          <div className='w-[80%] py-6  grid md:grid-cols-2 gap-4'>
             
        { orderDetail.map(({label,value,cl,bdr})=>(
         <div key={label} className={`bg-white border-t-4  ${bdr} py-5 px-4 shadow text-center`}>
