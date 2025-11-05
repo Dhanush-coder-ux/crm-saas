@@ -32,27 +32,28 @@ const Orders = () => {
 
   
 
-  const filteredOrders = useMemo(() => {
-    let filtered = accountOrders.filter(
-      (order) =>
-        order.order_id.toLowerCase().includes(search.toLowerCase()) ||
-        order.customer_id.toLowerCase().includes(search.toLowerCase()) ||
-        order.product_type.toLowerCase().includes(search.toLowerCase())
-    );
+const filteredOrders = useMemo(() => {
+  let filtered = accountOrders.filter((order) =>
+    String(order.order_id).toLowerCase().includes(search.toLowerCase()) ||
+    String(order.customer_id).toLowerCase().includes(search.toLowerCase()) ||
+    String(order.customer_name).toLowerCase().includes(search.toLowerCase()) ||
+    String(order.product_type).toLowerCase().includes(search.toLowerCase())
+  );
 
-    if (sortType === "amount-high") {
-      filtered.sort((a, b) => b.final_amount - a.final_amount);
-    } else if (sortType === "amount-low") {
-      filtered.sort((a, b) => a.final_amount - b.final_amount);
-    } else {
-      filtered.sort(
-        (a, b) =>
-          new Date(b.delivery_info.requested_date) -
-          new Date(a.delivery_info.requested_date)
-      );
-    }
-    return filtered;
-  }, [search, sortType]);
+  if (sortType === "amount-high") {
+    filtered.sort((a, b) => b.final_amount - a.final_amount);
+  } else if (sortType === "amount-low") {
+    filtered.sort((a, b) => a.final_amount - b.final_amount);
+  } else {
+    filtered.sort(
+      (a, b) =>
+        new Date(b.delivery_info.requested_date) -
+        new Date(a.delivery_info.requested_date)
+    );
+  }
+  return filtered;
+}, [search, sortType, accountOrders]);
+
 
   
   const totalOrders = filteredOrders.length;

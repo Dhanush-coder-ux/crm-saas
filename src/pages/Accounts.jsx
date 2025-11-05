@@ -105,7 +105,7 @@ const Accounts = () => {
 
           <AlertDialogFooter className="mt-4">
             <AlertDialogAction >
-                <Link to={'/contact'}>
+                <Link to={`/contact/${alertData ? alertData.id : ""}`}>
                 View Contact
                 </Link>
             </AlertDialogAction>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ContactInfo from "../components/ContactInfo";
 import { contacts } from "../constants";
 import {
@@ -10,10 +10,20 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
+import { useParams } from "react-router-dom";
 
 const Contact = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const {accountId} = useParams();
+
+    const accountcontacts = useMemo(() => {
+      if (!accountId) return contacts; 
+      return contacts.filter(
+        (contact) => String(contact.id) === String(accountId)
+      );
+    }, [accountId]);
+  
 
  
   const handleRowClick = (contact) => {
@@ -40,7 +50,7 @@ const Contact = () => {
           </thead>
 
           <tbody>
-            {contacts.map((contact) => (
+            {accountcontacts.map((contact) => (
               <tr
                 key={contact.id}
                 onClick={() => handleRowClick(contact)}
