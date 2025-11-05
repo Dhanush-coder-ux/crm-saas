@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Cookie } from "lucide-react";
 
 
 export const backend_url = import.meta.env.VITE_BACKEND_URL;
@@ -8,7 +9,6 @@ export const useNetWorkCall = () => {
         try {
             const url = `${backend_url}/${endpoint}`;
             method = method.toUpperCase();
-            const accessToken =""
             const config = {
                         headers: {
                             "Authorization":`Bearer ${accessToken}`,

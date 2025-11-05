@@ -110,7 +110,7 @@ const Accounts = () => {
                 </Link>
             </AlertDialogAction>
             <AlertDialogAction >
-                <Link to={'/order'}>
+                <Link to={`/orders/${alertData ? alertData.id : ""}`}>
                 View orders
                 </Link>
             </AlertDialogAction>

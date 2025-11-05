@@ -10,17 +10,30 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Orders = () => {
   const [search, setSearch] = useState("");
   const [sortType, setSortType] = useState("latest");
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const {accountId} = useParams();
 
-  // 🔍 Filter & sort logic
+  console.log("accountid",accountId);
+  
+  const accountOrders = useMemo(() => {
+    if (!accountId) return orders; 
+    return orders.filter(
+      (order) => String(order.customer_id) === String(accountId)
+    );
+  }, [accountId]);
+
+  console.log("account_order",accountOrders)
+
+  
+
   const filteredOrders = useMemo(() => {
-    let filtered = orders.filter(
+    let filtered = accountOrders.filter(
       (order) =>
         order.order_id.toLowerCase().includes(search.toLowerCase()) ||
         order.customer_id.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,7 +54,7 @@ const Orders = () => {
     return filtered;
   }, [search, sortType]);
 
-  // 📊 Calculate stats
+  
   const totalOrders = filteredOrders.length;
   const totalRevenue = filteredOrders.reduce(
     (sum, o) => sum + o.final_amount,

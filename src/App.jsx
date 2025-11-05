@@ -18,11 +18,12 @@ const App = () => {
       <SideBar/>
       <div className='w-[80%] mx-auto max-sm:w-full my-8 ' >
         <Routes>
-          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/' element={<Dashboard/>} />
           <Route path='/accounts' element={<Accounts/>} />
           <Route path='/contact' element={<Contact/>} />
           <Route path='/product' element={<Product/>} />
-          <Route path='/order' element={<Orders/>} />
+          <Route path='/orders' element={<Orders/>} />
+          <Route path="/orders/:accountId" element={<Orders />} />
           <Route path='/add-product' element={<AddProductForm/>} />
           <Route path='/add-account' element={<AddAccountForm/>} />
           <Route path='/add-contact' element={<AddContactForm/>} />

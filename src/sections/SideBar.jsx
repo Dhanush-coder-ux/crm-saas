@@ -25,6 +25,10 @@ const SideBar = () => {
          ))  
           }
         </div>  
+        <div className="bottom-0"> 
+<div className="text-2xl text-white px-3 py-3 flex rounded-lg shadow-sm gap-3  border-t-2 border-white w-full "> 
+  <img src="/icons/login.svg" width={30} height={30} /> Sign in</div>
+        </div>
     </div>
   )
 }

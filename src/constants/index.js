@@ -1,6 +1,6 @@
 export const sidebarLinks = [
   {
-    name: "Dashboard",icon: "/icons/dashboard.svg", path: "/dashboard"
+    name: "Dashboard",icon: "/icons/dashboard.svg", path: "/"
   },
   {
     name: "Accounts", icon: "/icons/account.svg", path: "/accounts"
@@ -9,7 +9,7 @@ export const sidebarLinks = [
     name: "Product", icon: "/icons/product.svg", path: "/product"
     },
     {
-    name: "Orders", icon: "/icons/order.svg", path: "/order"
+    name: "Orders", icon: "/icons/order.svg", path: "/orders"
   }
 ];
 
@@ -144,7 +144,7 @@ export const contacts = [
 export const orders = [
   {
     "order_id": "ORD-1001",
-    "customer_id": "CUST-501",
+    "customer_id": 1,
     "customer_name": "haran",
     "discount_price": 50,
     "total_price": 500,
@@ -162,7 +162,7 @@ export const orders = [
   },
   {
     "order_id": "ORD-1002",
-    "customer_id": "CUST-502",
+    "customer_id": 2,
     "customer_name": "mame",
     "discount_price": 0,
     "total_price": 1200,
@@ -180,7 +180,7 @@ export const orders = [
   },
   {
     "order_id": "ORD-1003",
-    "customer_id": "CUST-503",
+    "customer_id": 3,
     "customer_name": "saran",
     "discount_price": 100,
     "total_price": 1500,
@@ -198,7 +198,7 @@ export const orders = [
   },
   {
     "order_id": "ORD-1004",
-    "customer_id": "CUST-504",
+    "customer_id": 4,
     "customer_name": "kiran",
     "discount_price": 75,
     "total_price": 900,
@@ -216,7 +216,7 @@ export const orders = [
   },
   {
     "order_id": "ORD-1005",
-    "customer_id": "CUST-505",
+    "customer_id":5,
     "customer_name": "raman",
     "discount_price": 200,
     "total_price": 2200,
