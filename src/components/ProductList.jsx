@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { products } from "../constants";
+// import { products } from "../constants";
 
 import ProductAdd from "./ProductAdd";
 import {
@@ -13,20 +13,21 @@ import {
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
 import { ProductContext } from "../contexts/ProductContext";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  // const {products,getProducts} = useContext(ProductContext)
+  const {products,getProducts,deleteProduct,editProduct } = useContext(ProductContext)
 
   const handleRowClick = (product) => {
     setAlertData(product);
     setIsAlertOpen(true);
   };
 
-  // useEffect(()=>{
-  //   getProducts();
-  // },[])
+  useEffect(()=>{
+    getProducts();
+  },[])
 
   return (
     <div className="w-[88%] ml-[12%] p-6 min-h-screen">
@@ -60,10 +61,13 @@ const ProductList = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{product.description}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">
                   <div className="space-x-2 py-1 flex">
-                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                    <Link to={`/update-product/${product.id}`}>
+                    `<button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
                       <img src="/icons/edit.svg" width={15} height={15} alt="edit" />
-                    </button>
-                    <button className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                    </button>`
+                    </Link>
+                    
+                    <button onClick={()=>deleteProduct(product.id)} className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
                       <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
                     </button>
                   </div>

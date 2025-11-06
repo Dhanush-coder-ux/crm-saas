@@ -10,10 +10,20 @@ const ProductContextProvider = (props) => {
     const [products,setProducts] = useState([]);
     const [productbyid,setProductById] = useState(null);
 
-
+    const addProduct = async (form) => {
+        try {
+            const response = await NetWorkCalls({endpoint:"product",method:"POST",data:form});
+            console.log(response);
+            setProducts([...products,response.products]);
+            
+        } catch (error) {
+            console.error("from add product",error);
+            
+        }
+    }    
     const getProducts = async() => {
         try{
-            const response =  await NetWorkCalls({endpoint:"product",method:"GET"});
+            const response = await NetWorkCalls({endpoint:"product",method:"GET"});
             if(response){
                 setProducts(response.products)
             }    
@@ -24,19 +34,33 @@ const ProductContextProvider = (props) => {
 
     const deleteProduct = async(productId) => {
         try {
-            const response = await NetWorkCalls({endpoint:`product/${productId}`, method:"GET"});
+            const response = await NetWorkCalls({endpoint:`product/${productId}`, method:"DELETE"});
             if(response){
                 setProductById(response.products)
             }
         } catch (error) {
+            console.error("Failed to delete product", error);
+        }
+    }
+
+    const editProduct = async(productId,data) => {
+        try {
             
+            const response = await NetWorkCalls({endpoint:`product`, method:"put",data:data});
+            if(response){
+                setProductById(response.products)
+            }
+        } catch (error) {
+            console.error("Failed to delete product", error);
         }
     }
     const value = {
         products,
         productbyid,
         getProducts,
-        deleteProduct
+        deleteProduct,
+        addProduct,
+        editProduct 
     };
 
   

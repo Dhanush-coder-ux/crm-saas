@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { AccountContext } from "../contexts/AccountContext";
+
 
 const AddAccountForm = () => {
   const [loading, setLoading] = useState(false);
+  const {addAccount,editAccountById} = useContext(AccountContext)
   const [form, setForm] = useState({
     name: "",
     mobile: "",
@@ -23,9 +26,16 @@ const AddAccountForm = () => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    try {
+    
+      await addAccount(form)
+      
+    } catch (error) {
+      
+    }
     console.log( form);
   };
 

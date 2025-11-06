@@ -1,18 +1,51 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { ProductContext } from "../contexts/ProductContext";
+import { useNavigate, useNavigation, useParams } from "react-router-dom";
+import { navbarTheme } from "flowbite-react";
 
 const AddProductForm = () => {
   const [form, setForm] = useState({
     name: "",
     price: "",
-    quantity: "",
-    productType: "",
+    available_qty: "",
+    product_type: "",
+    description:''
   });
 
+  const [btnlabel,setBtnlabel]=useState({'name':"Add Product", 'loading':"Adding Product..."})
   const [loading, setLoading] = useState(false);
+  const {addProduct,products,editProduct} = useContext(ProductContext);
 
+  const { productId }=useParams()
+  const navigator=useNavigate()
+  useEffect(()=>{
+    console.log(productId,"product id");
+    
+    if (productId!=null || productId!==''){
+      
+      
+      const product=products.filter((e)=>e.id==productId)[0]
+      if (product!==undefined){
+        console.log("data sertyyu :",product);
+        setBtnlabel({'name':"Update Product", 'loading':"Updating Product..."})
+        setForm({
+          name:product.name,
+          price:product.price,
+          available_qty:product.quantity,
+          product_type:product.product_type,
+          description:product.description
+        })
+      }
+      else{
+        navigator('/product')
+      }
+      
+      
+    }
+  },[])
  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -20,8 +53,22 @@ const AddProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+      setLoading(true);
+      try {
+        if(productId){
+          await editProduct(productId,form)
+        }else{
+          await addProduct(form)
+        }
+        navigator('/product')   
+      } catch (error) {
+        console.error(error);
+        
+      }finally{
+        setLoading(false)
+      }
+        
 
-    setLoading(true);
     console.log(form);
   };
 
@@ -44,6 +91,17 @@ const AddProductForm = () => {
               placeholder="Enter product name"
             />
           </div>
+          <div>
+            <Label htmlFor="description" className="mb-2">
+              Product description
+            </Label>
+            <Input
+              id="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Enter product description"
+            />
+          </div>
 
           <div>
             <Label htmlFor="price" className="mb-2">
@@ -63,21 +121,21 @@ const AddProductForm = () => {
               Quantity
             </Label>
             <Input
-              id="quantity"
+              id="available_qty"
               type="number"
-              value={form.quantity}
+              value={form.available_qty}
               onChange={handleChange}
               placeholder="Enter quantity"
             />
           </div>
 
           <div>
-            <Label htmlFor="productType" className="mb-2">
+            <Label htmlFor="product_type" className="mb-2">
               Product Type
             </Label>
             <Input
-              id="productType"
-              value={form.productType}
+              id="product_type"
+              value={form.product_type}
               onChange={handleChange}
               placeholder="e.g. Electronics"
             />
@@ -88,7 +146,7 @@ const AddProductForm = () => {
             className="w-full bg-blue-900 text-white"
             disabled={loading}
           >
-            {loading ? "Adding Product..." : "Add Product"}
+            {loading ? btnlabel['loading'] : btnlabel['name']}
           </Button>
         </form>
       </div>
