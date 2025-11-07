@@ -64,8 +64,8 @@ const Accounts = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.name}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.mobile_number}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.email}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.website}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.number_of_employees}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.website_url}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.no_of_employee}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.gst_number}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.address}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.industry}</td>
@@ -114,11 +114,11 @@ const Accounts = () => {
 
                   
                     <span className="font-semibold text-gray-500">Website:</span>
-                    <span className="text-gray-800">{alertData.website}</span>
+                    <span className="text-gray-800">{alertData.website_url}</span>
 
                     
                     <span className="font-semibold text-gray-500">Employees:</span>
-                    <span className="text-gray-800">{alertData.number_of_employees}</span>
+                    <span className="text-gray-800">{alertData.no_of_employee}</span>
 
                   
                     <span className="font-semibold text-gray-500">GST Number:</span>
@@ -134,8 +134,6 @@ const Accounts = () => {
                     <span className="font-semibold text-gray-500">Sector:</span>
                     <span className="text-gray-800">{alertData.sector}</span>
 
-                    <span className="font-semibold text-gray-500">Primary Contact:</span>
-                    <span className="text-gray-800">{alertData.primary_contact}</span>
                   </div>
               )}
             </AlertDialogDescription>

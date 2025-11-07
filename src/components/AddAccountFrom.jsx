@@ -38,13 +38,12 @@ useEffect(() => {
           name: accountToEdit.name,
           mobile_number: accountToEdit.mobile_number,
           email: accountToEdit.email,
-          website_url: accountToEdit.website, 
-          no_of_employee: accountToEdit.number_of_employees,
+          website_url: accountToEdit.website_url, 
+          no_of_employee: accountToEdit.no_of_employee,
           gst_number: accountToEdit.gst_number,
           address: accountToEdit.address,
           industry: accountToEdit.industry,
           sector: accountToEdit.sector,
-          primary_contact: accountToEdit.primary_contact,
         });
       }
     }
@@ -154,11 +153,6 @@ useEffect(() => {
                 <option value="private">Private</option>
                 <option value="public">Public</option>
               </select>
-            </div>
-
-            <div>
-              <Label className="p-4" htmlFor="primary_contact">Contact Person</Label>
-              <Input id="primary_contact" placeholder="Enter contact person" value={form.primary_contact} onChange={handleChange} />
             </div>
           </div>
 
