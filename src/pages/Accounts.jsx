@@ -99,18 +99,44 @@ const Accounts = () => {
             </AlertDialogTitle>
             <AlertDialogDescription>
               {alertData && (
-                <div className="text-sm space-y-2 mt-3">
-                  <p><strong>Name:</strong> {alertData.name}</p>
-                  <p><strong>Mobile Number:</strong> {alertData.mobile_number}</p>
-                  <p><strong>Email:</strong> {alertData.email}</p>
-                  <p><strong>Website:</strong> {alertData.website}</p>
-                  <p><strong>Number of Employees:</strong> {alertData.number_of_employees}</p>
-                  <p><strong>GST Number:</strong> {alertData.gst_number}</p>
-                  <p><strong>Address:</strong> {alertData.address}</p>
-                  <p><strong>Industry:</strong> {alertData.industry}</p>
-                  <p><strong>Sector:</strong> {alertData.sector}</p>
-                  <p><strong>Primary Contact:</strong> {alertData.primary_contact}</p>
-                </div>
+              <div className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 text-sm mt-3">
+                    
+                    <span className="font-semibold text-gray-500">Name:</span>
+                    <span className="text-gray-800">{alertData.name}</span>
+
+                  
+                    <span className="font-semibold text-gray-500">Mobile Number:</span>
+                    <span className="text-gray-800">{alertData.mobile_number}</span>
+
+                    
+                    <span className="font-semibold text-gray-500">Email:</span>
+                    <span className="text-gray-800">{alertData.email}</span>
+
+                  
+                    <span className="font-semibold text-gray-500">Website:</span>
+                    <span className="text-gray-800">{alertData.website}</span>
+
+                    
+                    <span className="font-semibold text-gray-500">Employees:</span>
+                    <span className="text-gray-800">{alertData.number_of_employees}</span>
+
+                  
+                    <span className="font-semibold text-gray-500">GST Number:</span>
+                    <span className="text-gray-800">{alertData.gst_number}</span>
+                    <span className="font-semibold text-gray-500">Address:</span>
+                    <span className="text-gray-800">{alertData.address}</span>
+
+                    
+                    <span className="font-semibold text-gray-500">Industry:</span>
+                    <span className="text-gray-800">{alertData.industry}</span>
+
+                
+                    <span className="font-semibold text-gray-500">Sector:</span>
+                    <span className="text-gray-800">{alertData.sector}</span>
+
+                    <span className="font-semibold text-gray-500">Primary Contact:</span>
+                    <span className="text-gray-800">{alertData.primary_contact}</span>
+                  </div>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>

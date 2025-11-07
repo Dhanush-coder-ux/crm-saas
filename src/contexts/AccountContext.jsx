@@ -32,34 +32,39 @@ const AccountContextProvider = (props) => {
     const getAccountById = async (accountId) =>{
         try {
             const response = await NetWorkCalls({endpoint:`customer/${accountId}`, method:'get'});
-            console.log(response.customers);
-            setAccountId(response.customers)
+            console.log(response.data);
+            setAccountId(response.data)
             
         } catch (error) {
             console.error(error);
             
         }
     }
-    const editAccountById = async (accountId,data) =>{
-        try {
-            data['customer_id']= accountId
-            const response = await NetWorkCalls({endpoint:`customer`, method:'put',data:data});
-            console.log(response.customers);
-            setAccountId(response.customers)
-            
-        } catch (error) {
-            console.error(error);
-            
+    const editAccountById = async (accountId, data) => {
+            try {
+                data['customer_id']=accountId
+                const response = await NetWorkCalls({endpoint: `customer`, method: 'put',data: data});
+                if (response.data) {
+                    console.log("Update successful, new data:", response.data);
+                    setAccount(prevAccounts => 
+                        prevAccounts.map(account => 
+                            account.id === accountId ? response.data : account 
+                        )
+                    );
+                }
+                
+            } catch (error) {
+                console.error(error);
+            }
         }
-    }
     const deleteAccountById = async (accountId) =>{
         try {
             const response = await NetWorkCalls({endpoint:`customer/${accountId}`, method:'delete'});
-            console.log(response.customers);
-            setAccountId(response.customers)
+            console.log(response.data);
+            setAccountId(response.data)
             
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             
         }
     }

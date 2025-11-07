@@ -3,7 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { AccountContext } from "../contexts/AccountContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 
@@ -12,29 +12,7 @@ const AddAccountForm = () => {
   const [btnlable,setBtnLable] = useState({'name':"Add Account", 'loading':"Adding Account..."})
   const { editAccountById, addAccount,account } = useContext(AccountContext);
   const { accountId } = useParams();
-
-  useEffect(()=>{
-    if(accountId!==null || accountId!==""){
-      const accounts = account.filter((a)=>a.id == accountId)[0];
-
-      if(accounts!==undefined){
-        setBtnLable({'name':"Update Account", 'loading':"Updating Account..."})
-        setForm({
-              name:accounts.name,
-              mobile_number: accounts.mobile_number,
-              email: accounts.email,
-              website_url: accounts.web_url,
-              no_of_employee: accounts.no_of_employee, 
-              gst_number: accounts.gst_number,
-              address: accounts.address,
-              industry: accounts.industry,     
-              sector: accounts.sector,        
-              primary_contact: accounts.primary_contact,  
-        })
-      }
-    }
-  },[])
-
+  const navigate  = useNavigate()
   const [form, setForm] = useState({
     name: "",
     mobile_number: "",
@@ -47,6 +25,33 @@ const AddAccountForm = () => {
     sector: "",        
     primary_contact: "",
   });
+
+useEffect(() => {
+    if (accountId && account.length > 0) {
+      const accountToEdit = account.find((a) => a.id == accountId);
+
+      if (accountToEdit) {
+        console.log("Found account to edit:", accountToEdit);
+        setBtnLable({ name: "Update Account", loading: "Updating Account..." });
+
+        setForm({
+          name: accountToEdit.name,
+          mobile_number: accountToEdit.mobile_number,
+          email: accountToEdit.email,
+          website_url: accountToEdit.website, 
+          no_of_employee: accountToEdit.number_of_employees,
+          gst_number: accountToEdit.gst_number,
+          address: accountToEdit.address,
+          industry: accountToEdit.industry,
+          sector: accountToEdit.sector,
+          primary_contact: accountToEdit.primary_contact,
+        });
+      }
+    }
+
+  }, [accountId, account]);
+
+
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -71,10 +76,11 @@ const AddAccountForm = () => {
     try {
       if(accountId){
         await editAccountById(accountId,form)
+
       }else{
         await addAccount(form);
       }
-    
+      navigate('/accounts')
     } catch (error) {
       console.error(error);
     } finally {
