@@ -40,7 +40,7 @@ const AddProductForm = () => {
         })
       }
       else{
-        navigator('/product')
+        // navigator('/product')
       }
       
       

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AccountInfo from "../components/AccountInfo";
 import { account } from "../constants";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,15 +11,24 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "../components/ui/alert-dialog";
+import { AccountContext } from "../contexts/AccountContext";
 
 const Accounts = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const {account,getAccount,deleteAccountById} = useContext(AccountContext);
 
   const handleRowClick = (acc) => {
     setAlertData(acc);
     setIsAlertOpen(true);
   };
+
+  useEffect(()=>{
+    const fetchAccount= async()=>{
+      await getAccount()
+    }
+    fetchAccount()  
+  },[])
 
   return (
     <div className="w-[90%] ml-[12%] p-6 min-h-screen">
@@ -48,28 +57,31 @@ const Accounts = () => {
           <tbody>
             {account.map((acc) => (
               <tr
-                key={acc.id}
+                key={acc?.id}
                 onClick={() => handleRowClick(acc)}
                 className="hover:bg-gray-100 transition duration-150 cursor-pointer"
               >
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.name}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.mobile_number}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.email}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.website}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.number_of_employees}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.gst_number}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.address}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.industry}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc.sector}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.name}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.mobile_number}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.email}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.website}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.number_of_employees}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.gst_number}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.address}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.industry}</td>
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.sector}</td>
                  <td className="px-6 py-3 border-b border-e-blue-950">
                   <div className="space-x-0.5 py-1 flex">
-                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
-                      <img src="/icons/edit.svg" width={15 } height={15} alt="edit" />
-                    </button>
-                    <button className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
-                      <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
-                    </button>
-                  </div>
+                     
+                    <NavLink to={`/update-account/${acc.id}`}>
+                          <button  className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                          <img src="/icons/edit.svg" width={15 } height={15} alt="edit" />
+                        </button>
+                    </NavLink>
+                    <button onClick={()=>deleteAccountById(acc?.id)}  className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                        <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
+                      </button>
+                  </div> 
                 </td>
                
               </tr>

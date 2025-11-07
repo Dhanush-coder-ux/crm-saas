@@ -45,7 +45,7 @@ const ProductContextProvider = (props) => {
 
     const editProduct = async(productId,data) => {
         try {
-            
+            data['product_id'] =productId
             const response = await NetWorkCalls({endpoint:`product`, method:"put",data:data});
             if(response){
                 setProductById(response.products)

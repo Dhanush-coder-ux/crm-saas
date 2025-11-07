@@ -11,7 +11,7 @@ const AccountContextProvider = (props) => {
 
     const addAccount = async (form) =>{
         try {
-            const response = await NetWorkCalls({endpoint:'customers', method:'POST', data:form});
+            const response = await NetWorkCalls({endpoint:'customer', method:'POST', data:form});
             setAccount([...account, response.data]);
         } catch (error) {
             console.error(error);
@@ -20,7 +20,7 @@ const AccountContextProvider = (props) => {
     }
     const getAccount = async () =>{
         try {
-            const response = await NetWorkCalls({endpoint:'customers', method:'get'});
+            const response = await NetWorkCalls({endpoint:'customer', method:'get'});
             console.log(response.customers);
             setAccount(response.customers)
             
@@ -31,7 +31,7 @@ const AccountContextProvider = (props) => {
     }
     const getAccountById = async (accountId) =>{
         try {
-            const response = await NetWorkCalls({endpoint:`customers/${accountId}`, method:'get'});
+            const response = await NetWorkCalls({endpoint:`customer/${accountId}`, method:'get'});
             console.log(response.customers);
             setAccountId(response.customers)
             
@@ -43,7 +43,7 @@ const AccountContextProvider = (props) => {
     const editAccountById = async (accountId,data) =>{
         try {
             data['customer_id']= accountId
-            const response = await NetWorkCalls({endpoint:`customers`, method:'put'});
+            const response = await NetWorkCalls({endpoint:`customer`, method:'put',data:data});
             console.log(response.customers);
             setAccountId(response.customers)
             
@@ -54,7 +54,7 @@ const AccountContextProvider = (props) => {
     }
     const deleteAccountById = async (accountId) =>{
         try {
-            const response = await NetWorkCalls({endpoint:`customers/${accountId}`, method:'delete'});
+            const response = await NetWorkCalls({endpoint:`customer/${accountId}`, method:'delete'});
             console.log(response.customers);
             setAccountId(response.customers)
             
