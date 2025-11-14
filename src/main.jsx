@@ -4,19 +4,19 @@ import App from './App.jsx'
 import { BrowserRouter} from 'react-router-dom'
 import ProductContextProvider from './contexts/ProductContext'
 import AccountContextProvider from './contexts/AccountContext'
+import OrderContextProvider from './contexts/OrderContext'
 
 
 createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
-  <AccountContextProvider>
+  <OrderContextProvider>
+      <AccountContextProvider>
        <ProductContextProvider>
           <App />
       </ProductContextProvider>
-
-
   </AccountContextProvider>
-        
+  </OrderContextProvider>     
   </BrowserRouter>
 
 )

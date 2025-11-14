@@ -31,6 +31,7 @@ const App = () => {
           <Route path='/update-account/:accountId' element={<AddAccountForm/>} />
           <Route path='/add-contact' element={<AddContactForm/>} />
           <Route path='/add-order' element={<AddOrderForm/>} />
+          <Route path='/update-order/:orderId' element={<AddOrderForm/>} />
         </Routes>
       </div>
     </dir>

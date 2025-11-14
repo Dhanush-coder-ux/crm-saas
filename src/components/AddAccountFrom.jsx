@@ -33,7 +33,6 @@ useEffect(() => {
       if (accountToEdit) {
         console.log("Found account to edit:", accountToEdit);
         setBtnLable({ name: "Update Account", loading: "Updating Account..." });
-
         setForm({
           name: accountToEdit.name,
           mobile_number: accountToEdit.mobile_number,

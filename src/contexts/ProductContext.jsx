@@ -1,5 +1,5 @@
 import { useNetWorkCall } from '../NetWorks/NetWorkCalls';
-import React, { Children, createContext, useState } from 'react'
+import React, { Children, createContext, useEffect, useState } from 'react'
 
 
 export const ProductContext = createContext();
@@ -54,6 +54,11 @@ const ProductContextProvider = (props) => {
             console.error("Failed to delete product", error);
         }
     }
+
+    useEffect(()=>{
+        getProducts()
+    },[])
+    
     const value = {
         products,
         productbyid,

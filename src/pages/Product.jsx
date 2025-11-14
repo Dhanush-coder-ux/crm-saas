@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const Product = () => {
   const [alertData, setAlertData] = useState(null);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const {products,getProducts,deleteProduct,editProduct } = useContext(ProductContext)
+  const {products,getProducts,deleteProduct } = useContext(ProductContext)
 
   const handleRowClick = (product) => {
     setAlertData(product);

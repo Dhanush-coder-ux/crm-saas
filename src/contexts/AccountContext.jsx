@@ -1,5 +1,5 @@
 import { useNetWorkCall } from '../NetWorks/NetWorkCalls';
-import React, { createContext,useState } from 'react'
+import React, { createContext,useEffect,useState } from 'react'
 
 export const AccountContext = createContext();
 
@@ -68,6 +68,11 @@ const AccountContextProvider = (props) => {
             
         }
     }
+
+    useEffect(()=>{
+        
+        getAccount()
+    },[])
     
     const value = {
         account,

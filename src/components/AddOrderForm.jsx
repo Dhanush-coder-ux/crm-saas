@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { OrderContext } from "../contexts/OrderContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { ProductContext } from "../contexts/ProductContext";
+import { AccountContext } from "../contexts/AccountContext";
+
 
 const AddOrderForm = () => {
   const [form, setForm] = useState({
-    name: "",
-    productType: "",
+    customer_id: "",
+    product_id: "",
     quantity: "",
     totalPrice: "",
     discount: "",
@@ -18,6 +23,35 @@ const AddOrderForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const { addOrders,editOrders,orders} = useContext(OrderContext);
+  const {orderId} = useParams();
+  const [btnlabel,setBtnlabel]=useState({'name':"Add Orders", 'loading':"Adding orders..."})
+  const navigate = useNavigate();
+  const {products} = useContext(ProductContext);
+  const {account} = useContext(AccountContext);
+
+  useEffect(() => {
+    if (orderId && orders.length > 0) {
+      const order = orders.find((e) => e.id == orderId);
+      if (order) {
+        console.log("order", order);
+        setBtnlabel({ name: "Update orders", loading: "Updating orders..." });
+        setForm({
+                  customer_id: order.customer_id || "",
+                  product_id: order.product_id || "",
+                  quantity: order.quantity || "",
+                  totalPrice: order.total_price || "",
+                  discount: order.discount_price || "",
+                  finalAmount: order.final_price || "",
+                  requestedDate: order.requested_date || "",
+                  deliveryDate: order.delivery_date || "",
+                  shipping: order.shipping || "",
+                  paymentTerms: order.payment_terms || "",
+                });
+      }
+    }
+  }, [orderId, orders]);
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -27,7 +61,38 @@ const AddOrderForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(form);
+    const payload = {
+      customer_id: form.customer_id,
+      product_id: form.product_id,
+      quantity: Number(form.quantity),
+      total_price: Number(form.totalPrice),
+      discount_price: Number(form.discount),
+      final_price: Number(form.finalAmount),
+
+      delivery_info: {
+        requested_date: form.requestedDate,
+        delivery_date: form.deliveryDate,
+        shipping_method: form.shipping,   
+        payment_terms: form.paymentTerms,
+        freight_terms: form.freightTerms,
+      }
+    };
+
+    try {
+      if (orderId) {
+        await editOrders(orderId, payload);
+      } else {
+        await addOrders(payload);
+      }
+
+        navigate('/product')   
+      } catch (error) {
+        console.error(error);
+        
+      }finally{
+        setLoading(false)
+      }
+    console.log(payload);
   };
 
   return (
@@ -42,26 +107,43 @@ const AddOrderForm = () => {
           className="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-6"
         >
           
-          <div>
             <div>
-              <Label className={'py-4'} htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                value={form.name}
+            
+          
+            <div>
+              <Label htmlFor="customer_id" className={'py-4'}>Customer</Label>
+              <select
+                id="customer_id"
+                className="border p-2 rounded-md w-full"
+                value={form.customer_id}
                 onChange={handleChange}
-                placeholder="Enter product name"
-              />
+              >
+                <option value="">Select Customer</option>
+                {account?.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
-              <Label className={'py-4'} htmlFor="productType">Product Type</Label>
-              <Input
-                id="productType"
-                value={form.productType}
+              <Label className={'py-4'} htmlFor="product_id">Product</Label>
+              <select
+                id="product_id"
+                className="border p-2 rounded-md w-full"
+                value={form.product_id}
                 onChange={handleChange}
-                placeholder="e.g. Electronics"
-              />
+              >
+                <option value="">Select Product</option>
+                {products?.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name} ({p.product_type})
+                  </option>
+                ))}
+              </select>
             </div>
+
 
             <div>
               <Label className={'py-4'} htmlFor="quantity">Quantity</Label>
@@ -130,15 +212,20 @@ const AddOrderForm = () => {
               />
             </div>
 
-            <div>
-              <Label className={'py-4'} htmlFor="shipping">Shipping</Label>
-              <Input
-                id="shipping"
-                value={form.shipping}
-                onChange={handleChange}
-                placeholder="e.g. Free, Paid"
-              />
-            </div>
+          <div>
+            <Label className={'py-4'} htmlFor="shipping">Shipping Method</Label>
+                <select
+                  id="shipping"
+                  className="border p-2 rounded-md w-full"
+                  value={form.shipping}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Shipping Method</option>
+                  <option value="mail">Mail</option>
+                  <option value="fax">Fax</option>
+                </select>
+          </div>
+
 
             <div>
               <Label className={'py-4'} htmlFor="paymentTerms">Payment Terms</Label>
@@ -151,6 +238,17 @@ const AddOrderForm = () => {
             </div>
           </div>
 
+          <div>
+          <Label className={'py-4'} htmlFor="freightTerms">Freight Terms</Label>
+          <Input
+            id="freightTerms"
+            value={form.freightTerms}
+            onChange={handleChange}
+            placeholder="Enter freight terms"
+          />
+        </div>
+
+
         
           <div className="col-span-1 md:col-span-2 flex justify-center pt-4">
             <Button
@@ -158,12 +256,14 @@ const AddOrderForm = () => {
               className="w-full bg-blue-900 text-white"
               disabled={loading}
             >
-              {loading ? "Placing Order..." : "Place Order"}
+          {loading ? btnlabel['loading'] : btnlabel['name']}
+
             </Button>
           </div>
         </form>
       </div>
     </div>
+    
   );
 };
 
