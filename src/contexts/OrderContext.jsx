@@ -37,7 +37,7 @@ const getOrders = async () => {
   const editOrders = async (orderId,data)=>{
     try {
       data['order_id'] =orderId
-      const response = await NetWorkCalls({endpoint:'order', method:'POST', data:data})
+      const response = await NetWorkCalls({endpoint:'order', method:'put', data:data})
       setOrders(...orders,[response.data])
     } catch (error) {
       console.error(error);

@@ -9,7 +9,7 @@ export const useNetWorkCall = () => {
             const url = `${backend_url}/${endpoint}`;
             let response;
             method = method.toUpperCase();
-            var accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZ0FBQUFBQnBGY0txb0hvVGRabzhLQzVzdGpHaDFfb2dmUm1RLVFHZXhCOUh1Y09YV1ppRDZEV2lCMFBDN3pvUG9qdm12SUU1RjFieUQ4YXdCaDFlLUhkZ0lfbWwycmZLWnNpM1FvM1N3T0psUHFiYVEtV2ZiUGhvR25NeWdjcXU2bWhtZjZZZE5DREZHRkRBbHkxOW43SHJGQnBSSnJHYkZ3PT0iLCJleHAiOjE3NjM2Mzg1NzAsImlzcyI6IkRlQi1BdXRoIn0.bKTj_6abPs5ITgQTng-fw58Ztro0UCunjwSbAwGGv7o"
+            var accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZ0FBQUFBQnBGd1d6TmtkdUxObEZTcWhkZDgyaHhTeWdfWXVoYWEyMDFjMFB4NWVVTXYxR2ZhMGxZNVF3Y2tPTG94VVJJcEdmTF94UTBmV1BYM3c1OHRZRWQzR1dsTFZWZFVOTWh3bVV5bHFGWm5aSzVobWJYaFVEVlJWbTVBS1V3MlRZUDdDaVIyckRGWTBrOU1sc2FaWkh2V3R5X05GcXhhRTJXQ0EtRUoyNUp2NjE1Y29QdnZGU204WFo0VkF4OGFQekVCRFZfRkFnY0JtaWFBYjZMMXFkc05DQjhzUUlpdz09IiwiZXhwIjoxNzYzNzIxMjY3LCJpc3MiOiJEZUItQXV0aCJ9.3KlGvUlnfpxyP_BnfbVv26JB5pVCfnA5mJ1XVERGBbQ"
             const config = {
                         headers: {
                             "Authorization":`Bearer ${accessToken}`,
@@ -25,6 +25,9 @@ export const useNetWorkCall = () => {
                     response = await axios.put(url,data,config);
                 } else if (method === "DELETE") {
                     response = await axios.delete(url,config);
+                }
+                else if (method === "PATCH") {
+                    response = await axios.patch(url,data,config); 
                 }
                 if (response.status==200){
                     return response.data;

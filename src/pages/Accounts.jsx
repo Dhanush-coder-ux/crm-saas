@@ -48,9 +48,7 @@ const Accounts = () => {
               <th className="px-6 py-3 border-b">GST Number</th>
               <th className="px-6 py-3 border-b">Address</th>
               <th className="px-6 py-3 border-b">Industry</th>
-              <th className="px-6 py-3 border-b">Sector</th>
-              <th className="px-6 py-3 border-b">Actions</th>
-             
+              <th className="px-6 py-3 border-b">Sector</th>    
             </tr>
           </thead>
 
@@ -69,21 +67,7 @@ const Accounts = () => {
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.gst_number}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.address}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">{acc?.industry}</td>
-                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.sector}</td>
-                 <td className="px-6 py-3 border-b border-e-blue-950">
-                  <div className="space-x-0.5 py-1 flex">
-                     
-                    <NavLink to={`/update-account/${acc.id}`}>
-                          <button  className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
-                          <img src="/icons/edit.svg" width={15 } height={15} alt="edit" />
-                        </button>
-                    </NavLink>
-                    <button onClick={()=>deleteAccountById(acc?.id)}  className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
-                        <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
-                      </button>
-                  </div> 
-                </td>
-               
+                <td className="px-6 py-3 border-b border-e-blue-950">{acc?.sector}</td>       
               </tr>
             ))}
           </tbody>
@@ -95,8 +79,23 @@ const Accounts = () => {
         <AlertDialogContent className="max-w-lg">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-lg font-bold">
-              Account Details
+              <div className="flex flex-row justify-between">
+              
+                <div>Account Details</div>
+                <div className="gap-2 py-1 flex">
+                     
+                    <NavLink to={`/update-account/${alertData?.id}`}>
+                          <button  className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                          <img src="/icons/edit.svg" width={15 } height={15} alt="edit" />
+                        </button>
+                    </NavLink>
+                    <button onClick={()=>deleteAccountById(alertData?.id)}  className="bg-red-600 cursor-pointer px-2 py-2 rounded-lg">
+                        <img src="/icons/delete.svg" width={15} height={15} alt="delete" />
+                      </button>
+                  </div>
+              </div>
             </AlertDialogTitle>
+
             <AlertDialogDescription>
               {alertData && (
               <div className="grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 text-sm mt-3">

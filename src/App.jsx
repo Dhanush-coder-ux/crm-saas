@@ -29,7 +29,9 @@ const App = () => {
           <Route path='/update-product/:productId' element={<AddProductForm/>} />
           <Route path='/add-account' element={<AddAccountForm/>} />
           <Route path='/update-account/:accountId' element={<AddAccountForm/>} />
-          <Route path='/add-contact' element={<AddContactForm/>} />
+          <Route path='/add-contact/:accountId' element={<AddContactForm />} />
+          <Route path='/update-contact/:accountId/:contactcId' element={<AddContactForm />} />
+
           <Route path='/add-order' element={<AddOrderForm/>} />
           <Route path='/update-order/:orderId' element={<AddOrderForm/>} />
         </Routes>

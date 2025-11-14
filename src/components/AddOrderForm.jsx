@@ -20,6 +20,8 @@ const AddOrderForm = () => {
     deliveryDate: "",
     shipping: "",
     paymentTerms: "",
+    freightTerms:""
+
   });
 
   const [loading, setLoading] = useState(false);
@@ -43,10 +45,11 @@ const AddOrderForm = () => {
                   totalPrice: order.total_price || "",
                   discount: order.discount_price || "",
                   finalAmount: order.final_price || "",
-                  requestedDate: order.requested_date || "",
-                  deliveryDate: order.delivery_date || "",
-                  shipping: order.shipping || "",
-                  paymentTerms: order.payment_terms || "",
+                  requestedDate: order.delivery_info.requested_date || "",
+                  deliveryDate: order.delivery_info.delivery_date || "",
+                  shipping: order.delivery_info.shipping_method || "",
+                  paymentTerms: order.delivery_info.payment_terms || "",
+                  freightTerms: order.delivery_info.freight_terms || "",
                 });
       }
     }

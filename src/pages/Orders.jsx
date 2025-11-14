@@ -148,8 +148,8 @@ console.log("orders",filteredOrders);
           <thead className="bg-blue-950 text-white">
             <tr>
               <th className="px-6 py-3">Order ID</th>
-              <th className="px-6 py-3">Customer ID</th>
-              <th className="px-6 py-3">Product ID</th>
+              <th className="px-6 py-3">Customer </th>
+              <th className="px-6 py-3">Product </th>
               <th className="px-6 py-3">Quantity</th>
               <th className="px-6 py-3">Total Price</th>
               <th className="px-6 py-3">Discount</th>
@@ -158,7 +158,6 @@ console.log("orders",filteredOrders);
               <th className="px-6 py-3">Delivery Date</th>
               <th className="px-6 py-3">Shipping</th>
               <th className="px-6 py-3">Payment Terms</th>
-              <th className="px-6 py-3">Actions</th>
             </tr>
           </thead>
 
@@ -170,8 +169,8 @@ console.log("orders",filteredOrders);
                 onClick={() => handleRowClick(order)}
               >
                 <td className="px-6 py-3">{order.id}</td>
-                <td className="px-6 py-3">{order.customer_id}</td>
-                <td className="px-6 py-3">{order.product_id}</td>
+                <td className="px-6 py-3">{order.customer_name}</td>
+                <td className="px-6 py-3">{order.product_name}</td>
                 <td className="px-6 py-3">{order.quantity}</td>
                 <td className="px-6 py-3">₹{order.total_price}</td>
                 <td className="px-6 py-3 text-red-600">
@@ -192,34 +191,6 @@ console.log("orders",filteredOrders);
                 <td className="px-6 py-3">
                   {order.delivery_info?.payment_terms}
                 </td>
-
-                <td className="px-6 py-3">
-                  <div className="flex gap-2">
-                    <NavLink to={`/update-order/${order.id}`}>
-                      <button className="bg-blue-950 px-2 py-2 rounded-lg">
-                        <img
-                          src="/icons/edit.svg"
-                          width={15}
-                          height={15}
-                          alt="edit"
-                        />
-                      </button>
-                    </NavLink>
-
-                    <button
-                      onClick={() =>deleteOrders(order.id,order.customer_id)
-                      }
-                      className="bg-red-600 px-2 py-2 rounded-lg"
-                    >
-                      <img
-                        src="/icons/delete.svg"
-                        width={15}
-                        height={15}
-                        alt="delete"
-                      />
-                    </button>
-                  </div>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -229,7 +200,36 @@ console.log("orders",filteredOrders);
         <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
           <AlertDialogContent className="max-w-lg">
             <AlertDialogHeader>
-              <AlertDialogTitle>Order Details</AlertDialogTitle>
+              <AlertDialogTitle>
+                <div className="flex flex-row justify-between">
+                  <div>Order Details</div>
+                  <div className="flex gap-2">
+                        <NavLink to={`/update-order/${alertData?.id}`}>
+                          <button className="bg-blue-950 px-2 py-2 rounded-lg">
+                            <img
+                              src="/icons/edit.svg"
+                              width={15}
+                              height={15}
+                              alt="edit"
+                            />
+                          </button>
+                        </NavLink>
+
+                        <button
+                          onClick={() =>deleteOrders(alertData?.id,alertData?.customer_id)
+                          }
+                          className="bg-red-600 px-2 py-2 rounded-lg"
+                        >
+                          <img
+                            src="/icons/delete.svg"
+                            width={15}
+                            height={15}
+                            alt="delete"
+                          />
+                        </button>
+                  </div>
+                </div>     
+                </AlertDialogTitle>
               <AlertDialogDescription>
                 {alertData && (
                   <div className="text-sm space-y-1 mt-2">

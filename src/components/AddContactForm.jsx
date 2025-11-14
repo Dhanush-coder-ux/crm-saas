@@ -1,17 +1,45 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { useNavigate, useParams } from "react-router-dom";
+import { CustomerContext } from "../contexts/ContactContext";
 
 const AddContactForm = () => {
   const [form, setForm] = useState({
     name: "",
     mobile: "",
     email: "",
-    fax: "",
+  });
+
+  const [btnlable, setBtnLable] = useState({
+    name: "Add Contact",
+    loading: "Adding Contact...",
   });
 
   const [loading, setLoading] = useState(false);
+  const { contact, addContact, editContactById } = useContext(CustomerContext);
+  const { accountId, contactcId } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (contactcId && contact.length > 0) {
+      const contactToEdit = contact.find((c) => c.id == contactcId);
+
+      if (contactToEdit) {
+        setBtnLable({
+          name: "Update Contact",
+          loading: "Updating Contact...",
+        });
+
+        setForm({
+          name: contactToEdit.contact_name || "",
+          mobile:contactToEdit.contact_mobile || "",
+          email: contactToEdit.contact_email || "",
+        });
+      }
+    }
+  }, [contact, contactcId]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -22,7 +50,30 @@ const AddContactForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    console.log(form);
+  
+    const payload = {
+      name: form.name,
+      mobile_number: form.mobile,
+      email: form.email,
+      customer_id: accountId,
+      contact_id: contactcId
+    };
+    console.log(payload.customer_id);
+    
+
+    try {
+      if (contactcId) {
+        await editContactById(payload);
+      } else {
+        await addContact(payload);
+      }
+
+      navigate("/contact");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -68,16 +119,6 @@ const AddContactForm = () => {
             />
           </div>
 
-          <div>
-            <Label className="mb-2" htmlFor="fax">Fax</Label>
-            <Input
-              id="fax"
-              value={form.fax}
-              onChange={handleChange}
-              placeholder="Enter fax number"
-            />
-          </div>
-
           <Button
             type="submit"
             disabled={loading}
@@ -86,7 +127,7 @@ const AddContactForm = () => {
             {loading && (
               <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-4 h-4"></span>
             )}
-            {loading ? "Adding..." : "Add Contact"}
+            {loading ? btnlable.loading : btnlable.name}
           </Button>
         </form>
       </div>
