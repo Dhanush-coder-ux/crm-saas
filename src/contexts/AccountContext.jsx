@@ -69,8 +69,7 @@ const AccountContextProvider = (props) => {
         }
     }
 
-    useEffect(()=>{
-        
+    useEffect(()=>{ 
         getAccount()
     },[])
     

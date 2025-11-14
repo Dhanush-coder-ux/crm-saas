@@ -11,12 +11,25 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { UserContext } from "../contexts/UserContext";
+import { AuthContext } from "../contexts/AuthContext";
+import { useSearchParams } from "react-router-dom";
 
 const DashBoard = () => {
   const { user, getUser, updateUserRole, deleteUserById  } = useContext(UserContext);
+  const {getLoginUrl,checkIsLoggedIn,setLoggedInTokens,} = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [searchparams]=useSearchParams()
+  const auth=searchparams.get('auth');
+  const access_token=searchparams.get('access_token');
+  const refresh_token=searchparams.get('refresh_token');
+  const profile_url=searchparams.get('profile_url');
+  const user_name=searchparams.get('user_name')
 
   useEffect(() => {
+    console.log("search params :",auth,access_token,refresh_token,profile_url,user_name);
+    if ((auth!=null || auth!=false) && access_token!=null && refresh_token!=null){
+      setLoggedInTokens({access_token,refresh_token,profile_url,user_name})
+    }
     getUser(); 
   }, []);
 

@@ -18,14 +18,17 @@ const AddContactForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const { contact, addContact, editContactById } = useContext(CustomerContext);
+  const { contactId, addContact, editContactById } = useContext(CustomerContext);
   const { accountId, contactcId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (contactcId && contact.length > 0) {
-      const contactToEdit = contact.find((c) => c.id == contactcId);
-
+    console.log("contact to edit : ",contactcId,"contacts :",contactId);
+    console.log("Updated contactId:", contactId);
+    if (contactcId && contactId.length > 0) {
+      const contactToEdit = contactId.find((c) => c.id == contactcId);
+      console.log("contact to edit : ",contactToEdit,"contacts :",contactId);
+      
       if (contactToEdit) {
         setBtnLable({
           name: "Update Contact",
@@ -39,7 +42,7 @@ const AddContactForm = () => {
         });
       }
     }
-  }, [contact, contactcId]);
+  }, [contactId,contactcId]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;

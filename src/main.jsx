@@ -7,12 +7,14 @@ import AccountContextProvider from './contexts/AccountContext'
 import OrderContextProvider from './contexts/OrderContext'
 import CutomerContextProvider from './contexts/ContactContext'
 import UserContextProvider from './contexts/UserContext'
+import AuthContextProvider from './contexts/AuthContext'
 
 
 
 createRoot(document.getElementById('root')).render(
 
   <BrowserRouter>
+  <AuthContextProvider>
     <UserContextProvider>
     <CutomerContextProvider>
       <OrderContextProvider>
@@ -24,6 +26,7 @@ createRoot(document.getElementById('root')).render(
      </OrderContextProvider> 
     </CutomerContextProvider>
     </UserContextProvider>
+    </AuthContextProvider>
   </BrowserRouter>
 
 )

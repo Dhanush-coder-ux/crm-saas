@@ -64,8 +64,8 @@ const Contact = () => {
               <td className="px-6 py-3 border-b border-e-blue-950">{c.contact_email}</td>
                 <td className="px-6 py-3 border-b border-e-blue-950">
                   <div className="space-x-2 py-1 flex">
-                    <Link to={`/update-contact/${c.customer_id}/${c.id}`}>
-                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg">
+                    <Link to={`/update-contact/${c.customer_id}/${c.id}`} onClick={(e) => e.stopPropagation()}>
+                    <button className="bg-blue-950 cursor-pointer px-2 py-2 rounded-lg" onClick={(e) => e.stopPropagation()}>
                       <img src="/icons/edit.svg" width={15} height={15} alt="edit" />
                     </button>
                     </Link>

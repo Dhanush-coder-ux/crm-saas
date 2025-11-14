@@ -44,8 +44,8 @@ const CutomerContextProvider = (props) => {
       const getContactByAccountId = async (accountId) =>{
           try {
               const response = await NetWorkCalls({endpoint:`contact/customer/${accountId}`, method:'get'});
-              console.log(response.data);
-              setContactId(response.contacts)
+              console.log("response contact :",response.contacts);
+              setContactId(response.contacts);
               
           } catch (error) {
               console.error(error);
