@@ -15,7 +15,7 @@ const AddProductForm = () => {
     description:''
   });
 
-  const [btnlabel,setBtnlabel]=useState({'name':"Add Product", 'loading':"Adding Product..."})
+  const [btnlabel,setBtnlabel]=useState({'btn':{'name':"Add Product", 'loading':"Adding Product..."},'title':'Add new product'})
   const [loading, setLoading] = useState(false);
   const {addProduct,products,editProduct} = useContext(ProductContext);
 
@@ -24,13 +24,13 @@ const AddProductForm = () => {
   useEffect(()=>{
     console.log(productId,"product id");
     
-    if (productId!=null || productId!==''){
+    if (productId!==null || productId!==''){
       
       
       const product=products.filter((e)=>e.id==productId)[0]
       if (product!==undefined){
         console.log("data sertyyu :",product);
-        setBtnlabel({'name':"Update Product", 'loading':"Updating Product..."})
+        setBtnlabel({'btn':{'name':"Update Product", 'loading':"Updating Product..."},'title':'Update product'})
         setForm({
           name:product.name,
           price:product.price,
@@ -40,7 +40,7 @@ const AddProductForm = () => {
         })
       }
       else{
-        // navigator('/product')
+      //  navigator('/product')
       }
       
       
@@ -76,7 +76,7 @@ const AddProductForm = () => {
     <div className="w-[90%] ml-[12%] p-6 min-h-screen">
       <div className="max-w-screen bg-white rounded-xl shadow p-6">
         <h2 className="text-xl font-semibold mb-4 text-blue-900">
-          Add New Product
+          {btnlabel['title']}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -146,7 +146,7 @@ const AddProductForm = () => {
             className="w-full bg-blue-900 text-white"
             disabled={loading}
           >
-            {loading ? btnlabel['loading'] : btnlabel['name']}
+            {loading ? btnlabel['btn']['loading'] : btnlabel['btn']['name']}
           </Button>
         </form>
       </div>

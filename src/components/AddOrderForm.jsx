@@ -27,7 +27,7 @@ const AddOrderForm = () => {
   const [loading, setLoading] = useState(false);
   const { addOrders,editOrders,orders} = useContext(OrderContext);
   const {orderId} = useParams();
-  const [btnlabel,setBtnlabel]=useState({'name':"Add Orders", 'loading':"Adding orders..."})
+  const [btnlabel,setBtnlabel]=useState({'btn':{'name':"Add Orders", 'loading':"Adding orders..."},'title':'Add new order'})
   const navigate = useNavigate();
   const {products} = useContext(ProductContext);
   const {account} = useContext(AccountContext);
@@ -37,7 +37,7 @@ const AddOrderForm = () => {
       const order = orders.find((e) => e.id == orderId);
       if (order) {
         console.log("order", order);
-        setBtnlabel({ name: "Update orders", loading: "Updating orders..." });
+        setBtnlabel({'btn':{ name: "Update orders", loading: "Updating orders..." },'title':'Update Order'});
         setForm({
                   customer_id: order.customer_id || "",
                   product_id: order.product_id || "",
@@ -88,7 +88,7 @@ const AddOrderForm = () => {
         await addOrders(payload);
       }
 
-        navigate('/product')   
+        navigate('/orders')   
       } catch (error) {
         console.error(error);
         
@@ -102,7 +102,7 @@ const AddOrderForm = () => {
     <div className="w-[90%] ml-[12%] p-6 min-h-screen">
       <div className="max-w-screen bg-white rounded-xl shadow p-6">
         <h2 className="text-xl font-semibold mb-4 text-blue-900">
-          Add New Order
+          {btnlabel['title']}
         </h2>
 
         <form
@@ -259,7 +259,7 @@ const AddOrderForm = () => {
               className="w-full bg-blue-900 text-white"
               disabled={loading}
             >
-          {loading ? btnlabel['loading'] : btnlabel['name']}
+          {loading ? btnlabel['btn']['loading'] : btnlabel['btn']['name']}
 
             </Button>
           </div>

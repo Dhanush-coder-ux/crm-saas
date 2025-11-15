@@ -12,9 +12,9 @@ const AddContactForm = () => {
     email: "",
   });
 
-  const [btnlable, setBtnLable] = useState({
+  const [btnlable, setBtnLable] = useState({'btn':{
     name: "Add Contact",
-    loading: "Adding Contact...",
+    loading: "Adding Contact..."},'title':'Add new contact'
   });
 
   const [loading, setLoading] = useState(false);
@@ -30,10 +30,10 @@ const AddContactForm = () => {
       console.log("contact to edit : ",contactToEdit,"contacts :",contactId);
       
       if (contactToEdit) {
-        setBtnLable({
+        setBtnLable({'btn':{
           name: "Update Contact",
           loading: "Updating Contact...",
-        });
+        },'title':'Update contact'});
 
         setForm({
           name: contactToEdit.contact_name || "",
@@ -71,7 +71,7 @@ const AddContactForm = () => {
         await addContact(payload);
       }
 
-      navigate("/contact");
+      navigate(`/contact/${accountId}`);
     } catch (error) {
       console.error(error);
     } finally {
@@ -83,7 +83,7 @@ const AddContactForm = () => {
     <div className="w-[90%] ml-[12%] p-6 min-h-screen">
       <div className="max-w-screen bg-white rounded-xl shadow p-6">
         <h2 className="text-xl font-semibold mb-4 text-blue-900">
-          Add New Contact
+          {btnlable['title']}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -130,7 +130,7 @@ const AddContactForm = () => {
             {loading && (
               <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-4 h-4"></span>
             )}
-            {loading ? btnlable.loading : btnlable.name}
+            {loading ? btnlable['btn'].loading : btnlable['btn'].name}
           </Button>
         </form>
       </div>

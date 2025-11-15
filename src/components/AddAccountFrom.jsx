@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const AddAccountForm = () => {
   const [loading, setLoading] = useState(false);
-  const [btnlable,setBtnLable] = useState({'name':"Add Account", 'loading':"Adding Account..."})
+  const [btnlable,setBtnLable] = useState({'btn':{'name':"Add Account", 'loading':"Adding Account..."},'title':'Add new account'})
   const { editAccountById, addAccount,account } = useContext(AccountContext);
   const { accountId } = useParams();
   const navigate  = useNavigate()
@@ -32,7 +32,7 @@ useEffect(() => {
 
       if (accountToEdit) {
         console.log("Found account to edit:", accountToEdit);
-        setBtnLable({ name: "Update Account", loading: "Updating Account..." });
+        setBtnLable({'btn':{ name: "Update Account", loading: "Updating Account..." },'title':'Update account'});
         setForm({
           name: accountToEdit.name,
           mobile_number: accountToEdit.mobile_number,
@@ -92,7 +92,7 @@ useEffect(() => {
   return (
     <div className="w-[90%] ml-[12%] p-6 min-h-screen">
       <div className="max-w-screen bg-white rounded-xl shadow p-6">
-        <h2 className="text-xl font-semibold mb-4 text-blue-900">Add New Account</h2>
+        <h2 className="text-xl font-semibold mb-4 text-blue-900">{btnlable['title']}</h2>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -157,7 +157,7 @@ useEffect(() => {
 
           <div className="col-span-1 md:col-span-2 flex justify-center pt-4">
             <Button type="submit" disabled={loading} className="w-full bg-blue-600 text-white hover:bg-blue-700">
-              {loading ? btnlable['loading'] : btnlable['name']}
+              {loading ? btnlable['btn']['loading'] : btnlable['btn']['name']}
             </Button>
           </div>
         </form>
